@@ -1,5 +1,5 @@
 // Import necessary functions from viem via CDN
-import { createWalletClient, custom, createPublicClient } from 'https://esm.sh/viem'
+import { createWalletClient, custom, createPublicClient, parseEther, defineChain } from 'https://esm.sh/viem'
 import { contractAddress, tipAbi } from './constant-js.js';
 
 const connectButton = document.getElementById("connect-btn");
@@ -14,7 +14,6 @@ let publicClient;
 async function connectWallet() {
   // Check if window.ethereum is present
   if (typeof window.ethereum !== "undefined") {
-    console.log("Connect button clicked");
     walletClient = createWalletClient({
       transport: custom(window.ethereum)
     });
@@ -43,7 +42,7 @@ async function connectWallet() {
 }
 
 async function fund() {
-  const ethAmount = Number(ethAmountInput.value);
+  const ethAmount = ethAmountInput.value;
   console.log(`Funding with ${ethAmount} ETH`);
 
   if (typeof window.ethereum !== "undefined") {
@@ -51,6 +50,7 @@ async function fund() {
       transport: custom(window.ethereum)
     });
     const [connectedAddress] = await walletClient.requestAddresses(); // Between brackets bc it returns a list
+    const currentChain = await getCurrentChain(walletClient);
 
     // Create Public Client after Wallet Client is ready
     publicClient = createPublicClient({
@@ -64,9 +64,13 @@ async function fund() {
         address: contractAddress,
         abi: tipAbi,
         functionName: 'fund',
-        account: connectedAddress, // Use the address obtained from requestAddresses
-        value: undefined,  // TODO: Add parsed ETH amount in Wei
+        chain: currentChain, // Optional
+        account: connectedAddress,
+        value: parseEther(ethAmount), // Convert ETH to Wei
+        // args: [], // Include if your function takes arguments
       });
+     console.log("Funding with:", parseEther(ethAmount), "Wei");
+
       console.log("Simulation successful:", simulationResult);
       // If simulation succeeds, simulationResult.request contains the prepared transaction details
       // We can then pass this to walletClient.writeContract() to send the actual transaction
@@ -78,6 +82,25 @@ async function fund() {
   } else {
     connectButton.innerHTML = "Please install MetaMask";
   }
+}
+
+async function getCurrentChain(client) {
+  const chainId = await client.getChainId()
+  const currentChain = defineChain({
+    id: chainId,
+    name: "Custom Chain",
+    nativeCurrency: {
+      name: "Ether",
+      symbol: "ETH",
+      decimals: 18,
+    },
+    rpcUrls: {
+      default: {
+        http: ["http://localhost:5500"],
+      },
+    },
+  })
+  return currentChain
 }
 
 connectButton.onclick = connectWallet;
