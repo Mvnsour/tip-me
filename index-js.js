@@ -1,5 +1,6 @@
 // Import necessary functions from viem via CDN
 import { createWalletClient, custom, createPublicClient } from 'https://esm.sh/viem'
+import { contractAddress, tipAbi } from './constant-js.js';
 
 const connectButton = document.getElementById("connect-btn");
 const balanceButton = document.getElementById("balance-btn");
@@ -49,7 +50,7 @@ async function fund() {
     walletClient = createWalletClient({
       transport: custom(window.ethereum)
     });
-    await walletClient.requestAddresses();
+    const [connectedAddress] = await walletClient.requestAddresses(); // Between brackets bc it returns a list
 
     // Create Public Client after Wallet Client is ready
     publicClient = createPublicClient({
@@ -60,10 +61,10 @@ async function fund() {
       // We need to define contractAddress and contractAbi first
       // We also need to parse ethAmount into Wei (e.g., using viem's parseEther)
       const simulationResult = await publicClient.simulateContract({
-        address: undefined, // TODO: Add deployed contract address
-        abi: undefined, // TODO: Add contract ABI
+        address: contractAddress,
+        abi: tipAbi,
         functionName: 'fund',
-        account: address, // Use the address obtained from requestAddresses
+        account: connectedAddress, // Use the address obtained from requestAddresses
         value: undefined,  // TODO: Add parsed ETH amount in Wei
       });
       console.log("Simulation successful:", simulationResult);
