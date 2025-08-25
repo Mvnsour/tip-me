@@ -60,7 +60,7 @@ async function fund() {
     try {
       // We need to define contractAddress and contractAbi first
       // We also need to parse ethAmount into Wei (e.g., using viem's parseEther)
-      const simulationResult = await publicClient.simulateContract({
+      const { request } = await publicClient.simulateContract({
         address: contractAddress,
         abi: tipAbi,
         functionName: 'fund',
@@ -69,16 +69,15 @@ async function fund() {
         value: parseEther(ethAmount), // Convert ETH to Wei
         // args: [], // Include if your function takes arguments
       });
-     console.log("Funding with:", parseEther(ethAmount), "Wei");
-
-      console.log("Simulation successful:", simulationResult);
-      // If simulation succeeds, simulationResult.request contains the prepared transaction details
+      console.log("Funding with:", parseEther(ethAmount), "Wei");
+      // If simulation succeeds, request contains the prepared transaction details
       // We can then pass this to walletClient.writeContract() to send the actual transaction
-      
+      const hash = await walletClient.writeContract(request);
+      console.log("Transaction hash:", hash);
+
     } catch (error) {
         console.error("Simulation failed:", error);
-        // Handle simulation errors appropriately (e.g., display message to user)
-    }
+      }
   } else {
     connectButton.innerHTML = "Please install MetaMask";
   }
