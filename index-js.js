@@ -1,11 +1,11 @@
 // Import necessary functions from viem via CDN
-import { createWalletClient, custom, createPublicClient, parseEther, defineChain } from 'https://esm.sh/viem'
+import { createWalletClient, custom, createPublicClient, parseEther, defineChain, formatEther } from 'https://esm.sh/viem'
 import { contractAddress, tipAbi } from './constant-js.js';
 
 const connectButton = document.getElementById("connect-btn");
-const balanceButton = document.getElementById("balance-btn");
 const fundButton = document.getElementById("fund-btn");
 const ethAmountInput = document.getElementById("eth-amount");
+const balanceButton = document.getElementById("balance-btn");
 
 
 let walletClient;
@@ -100,6 +100,18 @@ async function getCurrentChain(client) {
     },
   })
   return currentChain
+}
+
+async function getBalance() {
+  if (typeof window.ethereum !== "undefined") {
+    publicClient = createPublicClient({
+      transport: custom(window.ethereum)
+    });
+    const balance = await publicClient.getBalance({
+      address: contractAddress,
+    });
+    console.log(formatEther(balance)); // Convert Wei to ETH for display
+  }
 }
 
 connectButton.onclick = connectWallet;
