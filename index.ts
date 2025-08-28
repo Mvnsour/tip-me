@@ -1,21 +1,35 @@
 // Import necessary functions from viem via CDN
-import { createWalletClient, custom, createPublicClient, parseEther, defineChain, formatEther } from 'https://esm.sh/viem'
-import { contractAddress, tipAbi } from './constant.js';
+import { 
+  createWalletClient, 
+  custom, 
+  createPublicClient, 
+  parseEther, 
+  defineChain, 
+  formatEther,
+  WalletClient,
+  PublicClient,
+  Chain, 
+  Address 
+} from 'viem';
+import "viem/window";
+import { contractAddress, tipAbi } from './constant';
 
-const connectButton = document.getElementById("connect-btn");
-const fundButton = document.getElementById("fund-btn");
-const ethAmountInput = document.getElementById("eth-amount");
-const balanceButton = document.getElementById("balance-btn");
-const withdrawButton = document.getElementById("withdraw-btn");
+// Define button elements with proper typing
+const connectButton = document.getElementById("connect-btn") as HTMLButtonElement;
+const fundButton = document.getElementById("fund-btn") as HTMLButtonElement;
+const ethAmountInput = document.getElementById("eth-amount") as HTMLInputElement;
+const balanceButton = document.getElementById("balance-btn") as HTMLButtonElement;
+const withdrawButton = document.getElementById("withdraw-btn") as HTMLButtonElement;
 
-let walletClient;
-let publicClient;
+// Declare variables with proper types
+let walletClient: WalletClient;
+let publicClient: PublicClient;
 
-async function connectWallet() {
+async function connectWallet(): Promise<void> {
   // Check if window.ethereum is present
-  if (typeof window.ethereum !== "undefined") {
+  if (typeof (window as any).ethereum !== "undefined") {
     walletClient = createWalletClient({
-      transport: custom(window.ethereum)
+      transport: custom((window as any).ethereum)
     });
     await walletClient.requestAddresses();
     connectButton.innerHTML = 'Connected';
@@ -41,27 +55,27 @@ async function connectWallet() {
   }
 }
 
-async function fund() {
+async function fund(): Promise<void> {
   const ethAmount = ethAmountInput.value;
   console.log(`Funding with ${ethAmount} ETH`);
 
-  if (typeof window.ethereum !== "undefined") {
+  if (typeof (window as any).ethereum !== "undefined") {
     walletClient = createWalletClient({
-      transport: custom(window.ethereum)
+      transport: custom((window as any).ethereum)
     });
     const [connectedAddress] = await walletClient.requestAddresses(); // Between brackets bc it returns a list
     const currentChain = await getCurrentChain(walletClient);
 
     // Create Public Client after Wallet Client is ready
     publicClient = createPublicClient({
-      transport: custom(window.ethereum)
+      transport: custom((window as any).ethereum)
     });
     
     try {
       // We need to define contractAddress and contractAbi first
       // We also need to parse ethAmount into Wei (e.g., using viem's parseEther)
       const { request } = await publicClient.simulateContract({
-        address: contractAddress,
+        address: contractAddress as Address,
         abi: tipAbi,
         functionName: 'fund',
         chain: currentChain, // Optional
@@ -83,8 +97,8 @@ async function fund() {
   }
 }
 
-async function getCurrentChain(client) {
-  const chainId = await client.getChainId()
+async function getCurrentChain(client: WalletClient): Promise<Chain> {
+  const chainId = await client.getChainId();
   const currentChain = defineChain({
     id: chainId,
     name: "Custom Chain",
@@ -98,38 +112,38 @@ async function getCurrentChain(client) {
         http: ["http://localhost:5500"],
       },
     },
-  })
-  return currentChain
+  });
+  return currentChain;
 }
 
-async function getBalance() {
-  if (typeof window.ethereum !== "undefined") {
+async function getBalance(): Promise<void> {
+  if (typeof (window as any).ethereum !== "undefined") {
     publicClient = createPublicClient({
-      transport: custom(window.ethereum)
+      transport: custom((window as any).ethereum)
     });
     const balance = await publicClient.getBalance({
-      address: contractAddress,
+      address: contractAddress as Address,
     });
     console.log(formatEther(balance)); // Convert Wei to ETH for display
   }
 }
 
-async function withdraw() {
-  if (typeof window.ethereum !== "undefined") {
+async function withdraw(): Promise<void> {
+  if (typeof (window as any).ethereum !== "undefined") {
     walletClient = createWalletClient({
-      transport: custom(window.ethereum)
+      transport: custom((window as any).ethereum)
     });
     const [connectedAddress] = await walletClient.requestAddresses();
     const currentChain = await getCurrentChain(walletClient);
 
     publicClient = createPublicClient({
-      transport: custom(window.ethereum)
+      transport: custom((window as any).ethereum)
     });
 
     try {
       // Simulate the withdraw call (no value sent)
       const { request } = await publicClient.simulateContract({
-        address: contractAddress,
+        address: contractAddress as Address,
         abi: tipAbi,
         functionName: 'withdraw',
         chain: currentChain,
@@ -149,6 +163,7 @@ async function withdraw() {
   }
 }
 
+// Add event listeners with proper typing
 connectButton.onclick = connectWallet;
 fundButton.onclick = fund;
 balanceButton.onclick = getBalance;
