@@ -18,13 +18,6 @@ Includes a **JavaScript baseline** (`index.js`) and a **TypeScript migration** (
 - **Wallet**: MetaMask  
 - **Tools**: VS Code, Live Server
 
-### Project Structure  
-├── index.html # UI
-├── index.js # Initial implementation in JS
-├── constant.js # ABI
-├── index.ts # TypeScript migration
-└── constant.ts # TypeScript migration
-
 ### Workflow Demonstration
 -  **Start the Server:** Launch a local web server (e.g., using the VS Code "Live Server" extension).
 -  **Run Anvil:** Start a local Anvil blockchain instance in a terminal.
@@ -48,6 +41,15 @@ Includes a **JavaScript baseline** (`index.js`) and a **TypeScript migration** (
     (Note: Anvil provides test accounts and private keys you can import into MetaMask.)
 4.  **Start the Server:** Use the VS Code "Live Server" extension or a similar command to serve `index.html`.
 
+### Project Structure 
+```raw 
+  ├── index.html # UI
+  ├── index.js # Initial implementation in JS
+  ├── constant.js # ABI
+  ├── index.ts # TypeScript migration
+  └── constant.ts # TypeScript migration
+  ```
+
 # FR
 ## Tip Me dApp
 
@@ -67,14 +69,6 @@ Le projet inclut une implémentation initiale en JavaScript (`index.js`) et une 
 - **Blockchain**: Solidity, [Viem](https://viem.sh/), Anvil (Foundry)  
 - **Wallet**: MetaMask  
 - **Tools**: VS Code, Live Server
-
-### Structure du projet 
-├── index.html # Interface utilisateur
-├── index.js # Version initiale en JS
-├── constant.js # ABI
-├── index.ts # Migration en TypeScript
-└── constant.ts # TypeScript migration
-
 
 ### Démonstration du flux de travail 🚀
 -  **Lancer le serveur :** Démarrer un serveur local (par exemple, avec l'extension VS Code "Live Server").
@@ -97,3 +91,12 @@ Le projet inclut une implémentation initiale en JavaScript (`index.js`) et une 
     ```
     (Note : Anvil fournit des comptes de test et des clés privées que vous pouvez importer dans MetaMask.)
 4.  **Lancer le serveur :** Utilisez l'extension "Live Server" de VS Code ou une commande similaire pour servir `index.html`.
+
+### Structure du projet 
+```raw
+  ├── index.html # Interface utilisateur
+  ├── index.js # Version initiale en JS
+  ├── constant.js # ABI
+  ├── index.ts # Migration en TypeScript
+  └── constant.ts # TypeScript migration
+  ```
