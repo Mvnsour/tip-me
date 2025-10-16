@@ -78,7 +78,7 @@ Le projet inclut une implémentation initiale en JavaScript (`index.js`) et une 
 -  **Vérifier le solde :** Cliquer sur "Get Balance" pour lire le solde mis à jour du contrat.
 -  **Retirer les fonds :** Cliquer sur "Withdraw" pour déclencher une transaction de retrait.
 
-### Installation et Lancement 🚀
+### Installation et Lancement 
 1.  **Prérequis :** Assurez-vous d'avoir [Node.js](https://nodejs.org/) et [Foundry](https://getfoundry.sh/) installés. Installez l'extension de navigateur [MetaMask](https://metamask.io/).
 2.  **Cloner le dépôt :**
     ```bash
