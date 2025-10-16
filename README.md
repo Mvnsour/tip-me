@@ -70,7 +70,7 @@ Le projet inclut une implémentation initiale en JavaScript (`index.js`) et une 
 - **Wallet**: MetaMask  
 - **Tools**: VS Code, Live Server
 
-### Démonstration du flux de travail 🚀
+### Démonstration du flux de travail 
 -  **Lancer le serveur :** Démarrer un serveur local (par exemple, avec l'extension VS Code "Live Server").
 -  **Lancer Anvil :** Exécuter une instance locale de la blockchain Anvil dans un terminal.
 -  **Connecter le portefeuille :** Ouvrir l'application dans le navigateur, configurer MetaMask pour se connecter au réseau Anvil et cliquer sur "Connect".
