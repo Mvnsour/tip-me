@@ -53,7 +53,7 @@ Includes a **JavaScript baseline** (`index.js`) and a **TypeScript migration** (
 # FR
 ## Tip Me dApp
 
-Une application décentralisée minimale permettant d'envoyer des pourboires (« acheter un café ») via des contrats intelligents Ethereum. Construite avec du HTML/JavaScript simple, elle a ensuite été migrée vers TypeScript pour une typage et une maintenabilité plus solides.
+Une application décentralisée minimale permettant d'envoyer des pourboires via des contrats intelligents Ethereum. Construite avec du HTML/JavaScript simple, elle a ensuite été migrée vers TypeScript pour une typage et une maintenabilité plus solides.
 
 ### Présentation
 Cette dApp illustre un flux Web3 minimal :
