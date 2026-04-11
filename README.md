@@ -22,7 +22,7 @@ Includes a **JavaScript baseline** (`index.js`) and a **TypeScript migration** (
 -  **Start the Server:** Launch a local web server (e.g., using the VS Code "Live Server" extension).
 -  **Run Anvil:** Start a local Anvil blockchain instance in a terminal.
 -  **Connect Wallet:** Open the application in your browser, configure MetaMask to connect to the Anvil network, and click "Connect".
--  **Fund the Contract:** Enter an amount and click "Buy Coffee" to send a transaction.
+-  **Fund the Contract:** Enter an amount and click "Tip" to send a transaction.
 -  **Check Balance:** Click "Get Balance" to read the contract's updated balance.
 -  **Withdraw Funds:** Click "Withdraw" to trigger a withdrawal transaction.
 
@@ -74,7 +74,7 @@ Le projet inclut une implémentation initiale en JavaScript (`index.js`) et une 
 -  **Lancer le serveur :** Démarrer un serveur local (par exemple, avec l'extension VS Code "Live Server").
 -  **Lancer Anvil :** Exécuter une instance locale de la blockchain Anvil dans un terminal.
 -  **Connecter le portefeuille :** Ouvrir l'application dans le navigateur, configurer MetaMask pour se connecter au réseau Anvil et cliquer sur "Connect".
--  **Financer le contrat :** Saisir un montant et cliquer sur "Buy Coffee" pour envoyer une transaction.
+-  **Financer le contrat :** Saisir un montant et cliquer sur "Tip" pour envoyer une transaction.
 -  **Vérifier le solde :** Cliquer sur "Get Balance" pour lire le solde mis à jour du contrat.
 -  **Retirer les fonds :** Cliquer sur "Withdraw" pour déclencher une transaction de retrait.
 
