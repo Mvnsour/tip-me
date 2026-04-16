@@ -82,7 +82,7 @@ Le projet inclut une implémentation initiale en JavaScript (`index.js`) et une 
 1.  **Prérequis :** Assurez-vous d'avoir [Node.js](https://nodejs.org/) et [Foundry](https://getfoundry.sh/) installés. Installez l'extension de navigateur [MetaMask](https://metamask.io/).
 2.  **Cloner le dépôt :**
     ```bash
-    git clone [https://www.linguee.com/french-english/translation/d%C3%A9p%C3%B4t.html](https://www.linguee.com/french-english/translation/d%C3%A9p%C3%B4t.html)
+    git clone [repository URL]
     cd [nom du dépôt]
     ```
 3.  **Lancer Anvil :**
