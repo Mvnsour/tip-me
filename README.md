@@ -31,8 +31,8 @@ Includes a **JavaScript baseline** (`index.js`) and a **TypeScript migration** (
 1.  **Prerequisites:** Ensure you have [Node.js](https://nodejs.org/) and [Foundry](https://getfoundry.sh/) installed. Install the [MetaMask](https://metamask.io/) browser extension.
 2.  **Clone the repository:**
     ```bash
-    git clone [repository URL]
-    cd [repository name]
+    git clone https://github.com/Mvnsour/tip-me.git
+    cd tip-me
     ```
 3.  **Start Anvil:**
     ```bash
@@ -82,8 +82,8 @@ Le projet inclut une implémentation initiale en JavaScript (`index.js`) et une 
 1.  **Prérequis :** Assurez-vous d'avoir [Node.js](https://nodejs.org/) et [Foundry](https://getfoundry.sh/) installés. Installez l'extension de navigateur [MetaMask](https://metamask.io/).
 2.  **Cloner le dépôt :**
     ```bash
-    git clone [repository URL]
-    cd [nom du dépôt]
+    git clone https://github.com/Mvnsour/tip-me.git
+    cd tip-me
     ```
 3.  **Lancer Anvil :**
     ```bash
